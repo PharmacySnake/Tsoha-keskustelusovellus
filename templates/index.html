@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% if session.username %}
+<p>
+    Olet kirjautunut nimellä {{ session.username }}
+</p>
+<a href="/logout">Kirjaudu ulos</a>
 
-</body>
-</html>
+{% else %}
+<form action="/login" method="POST">
+<p>Tunnus:<br>
+    <input type="text" name="username">
+</p>
+<p>Salasana:<br>
+<input type="password" name="password">
+</p>
+    <input type="submit" value="Kirjaudu">
+</form>
+<br>
+<a href="/account">Luo uusi tili</a>
+{% endif %}
