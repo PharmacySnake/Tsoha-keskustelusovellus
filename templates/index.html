@@ -1,4 +1,4 @@
-{% if session.username %}
+{% if session.user_id %}
 <p>
     Olet kirjautunut nimellä {{ session.username }}
 </p>
@@ -15,5 +15,5 @@
     <input type="submit" value="Kirjaudu">
 </form>
 <br>
-<a href="/account">Luo uusi tili</a>
+<a href="/register">Luo uusi tili</a>
 {% endif %}
