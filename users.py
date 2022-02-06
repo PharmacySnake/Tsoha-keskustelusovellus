@@ -11,7 +11,10 @@ def login(username, password):
         return False
     else:
         if check_password_hash(user.password, password):
+            #print(session)
             session["user_id"] = user.id
+            session["username"] = username
+            #print(session)
             return True
         else:
             return False
@@ -22,8 +25,7 @@ def user_id():
 
 
 def logout():
-    del session["user_id"]
-    del session["username"]
+    session.clear()
 
 
 def register(username, password):
