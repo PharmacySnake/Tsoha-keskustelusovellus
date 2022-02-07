@@ -1,6 +1,7 @@
 {% if session.user_id %}
 <p>Olet kirjautunut nimellä {{ session.username }}</p>
 <hr>
+{% endif %}
 
 {% for message in messages %}
 <i>Viesti:</i> {{ message[0] }}
@@ -9,6 +10,7 @@
 <hr>
 {% endfor %}
 
+{% if session.user_id %}
 <form action="/send" method="POST">
     <textarea name="content" rows="3" cols="40"></textarea><br>
     <input type="submit" value="Lähetä viesti"><br>
