@@ -7,12 +7,15 @@ import messages
 
 @app.route("/")
 def index():
+    list = messages.get_list()
+    return render_template("index.html", count=len(list), messages=list)
+    '''
     if users.user_id() == 0:
         return redirect("/login")
     else:
         list = messages.get_list()
         return render_template("index.html", count=len(list), messages=list)
-
+    '''
 
 @app.route("/send", methods=["POST"])
 def send():
@@ -51,10 +54,10 @@ def register():
         password1 = request.form["password1"]
         password2 = request.form["password2"]
         if password1 != password2:
-            return render_template("errorrr.html", message="Salasanat eroavat")
+            return render_template("error.html", message="Salasanat eroavat")
         if users.register(username, password1):
             return redirect("/")
         else:
-            return render_template("errorrr.html", message="Rekisteröinti ei onnistunut")
+            return render_template("error.html", message="Rekisteröinti ei onnistunut")
 
 
