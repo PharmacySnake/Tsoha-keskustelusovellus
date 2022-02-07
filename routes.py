@@ -7,8 +7,11 @@ import messages
 
 @app.route("/")
 def index():
-    list = messages.get_list()
-    return render_template("index.html", count=len(list), messages=list)
+    if users.user_id() == 0:
+        return redirect("/login")
+    else:
+        list = messages.get_list()
+        return render_template("index.html", count=len(list), messages=list)
 
 
 @app.route("/send", methods=["POST"])
