@@ -75,7 +75,7 @@ fasteners==0.14.1
 fastimport==0.9.8
 Flask==2.0.2
 Flask-SQLAlchemy==2.5.1
-folder-color-caja==0.0.86
+
 folder-color-common==0.0.86
 fsspec==0.6.1
 fuse-python==1.0.0
