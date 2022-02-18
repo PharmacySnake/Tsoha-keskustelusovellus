@@ -51,7 +51,7 @@ def register():
         return render_template("register.html")
     if request.method == "POST":
         username = request.form["username"]
-        if len(username) < 3:
+        if len(username) < 1:
             return render_template("error.html", message="Käyttäjänimi on liian lyhyt")
         elif len(username) > 23:
             return render_template("error.html", message="Käyttäjätunnus on liian pitkä")
