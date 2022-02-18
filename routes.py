@@ -51,15 +51,15 @@ def register():
         return render_template("register.html")
     if request.method == "POST":
         username = request.form["username"]
-        if username.length < 3:
+        if len(username) < 3:
             return render_template("error.html", message="Käyttäjänimi on liian lyhyt")
-        elif username.length > 23:
+        elif len(username) > 23:
             return render_template("error.html", message="Käyttäjätunnus on liian pitkä")
         password1 = request.form["password1"]
         password2 = request.form["password2"]
-        if password1.length < 3:
+        if len(password1) < 3:
             return render_template("error.html", message="Salasana on liian lyhyt")
-        elif password1.length > 32:
+        elif len(password1) > 32:
             return render_template("error.html", message="Salasana on liian pitkä")
         elif password1 != password2:
             return render_template("error.html", message="Salasanat eroavat")
