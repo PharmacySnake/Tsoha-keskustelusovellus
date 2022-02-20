@@ -5,8 +5,8 @@
 
 {% for topic in topics %}
 <i>title:</i> {{ topic[0] }} <i>></i>
-<p><i>Lähettäjä:</i> {{ message[1] }}</p>
-<p><i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}</p>
+<p><i>Lähettäjä:</i> {{ topic[1] }}</p>
+<p><i>Aika:</i> {{ topic[2].strftime("%Y-%m-%d %H:%M:%S") }}</p>
 <hr>
 {% endfor %}
 
