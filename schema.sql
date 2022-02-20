@@ -1,12 +1,23 @@
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE,
-    password TEXT
+    password TEXT,
+    is_admin BOOLEAN
 );
 
 CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
     content TEXT,
     user_id INTEGER REFERENCES users,
-    sent_at TIMESTAMP
+    topic_id INTEGER REFERENCES topics,
+    sent_at TIMESTAMP,
+    visible BOOLEAN
+);
+
+CREATE TABLE topics (
+    id SERIAL PRIMARY KEY,
+    title TEXT,
+    user_id INTEGER REFERENCES users,
+    creation_time TIMESTAMP,
+    visible BOOLEAN
 );

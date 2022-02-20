@@ -3,19 +3,29 @@
 <hr>
 {% endif %}
 
-{% for message in messages %}
-<i>Viesti:</i> {{ message[0] }}
+{% for topic in topics %}
+<i>title:</i> {{ topic[0] }} <i>></i>
 <p><i>Lähettäjä:</i> {{ message[1] }}</p>
 <p><i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}</p>
 <hr>
 {% endfor %}
 
 {% if session.user_id %}
+<a href="/create_new_topic">Luo uusi keskustelu</a>
 <form action="/send" method="POST">
     <textarea name="content" rows="3" cols="40"></textarea><br>
     <input type="submit" value="Lähetä viesti"><br>
+    <input type="hidden" name="csrf_token" value="{{ session csrf_token }}">
 </form>
-
+<script>
+    function check(form) {
+        if (form.message.value.length > 5000) {
+            alert("Viesti on liian pitkä");
+            return false;
+        }
+        return true;
+    }
+</script>
 <a href="/logout">Kirjaudu ulos</a>
 
 {% else %}
