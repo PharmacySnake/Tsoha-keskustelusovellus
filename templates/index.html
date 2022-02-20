@@ -9,7 +9,7 @@
 <p><i>Aika:</i> {{ topic[2].strftime("%Y-%m-%d %H:%M:%S") }}</p>
 <hr>
 {% endfor %}
-
+<!--
 {% if session.user_id %}
 <a href="/create_new_topic">Luo uusi keskustelu</a>
 <form action="/send" method="POST">
@@ -26,6 +26,7 @@
         return true;
     }
 </script>
+-->
 <a href="/logout">Kirjaudu ulos</a>
 
 {% else %}

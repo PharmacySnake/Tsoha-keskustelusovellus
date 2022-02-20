@@ -8,20 +8,22 @@ import communicationManager
 def index():
     #list = communicationManager.get_list()
     list = communicationManager.get_topics()
-    return render_template("index.html", count=len(list), messages=list)
-
+    return render_template("index.html", count=len(list), topics=list)
+'''
 @app.route("/send", methods=["POST"])
 def send():
     content = request.form["content"]
+    topic = request.form["topic"]
+
     if session["csrf_token"] != request.form["csrf_token"]:
         abort(403)
     elif len(content) > 5000:
         return render_template("error.html", message="Viesti on liian pitkä")
-    elif communicationManager.send(content):
+    elif communicationManager.send(content, topic):
         return redirect("/")
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
-
+'''
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -68,11 +70,12 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
-
+'''
 @add.route("/topic/<int:id>")
 def topic(id):
     return render_template("thread.html", )
-
+'''
+'''
 @add.route("/newtopic", methods=["GET", "POST"])
 def create_new_topic():
     if request.method == "GET":
@@ -92,20 +95,7 @@ def create_new_topic():
             return redirect("/")
         else:
             return render_template("error.html", message="Viestiketjun luominen ei onnistunut")
-
-@app.route("/send", methods=["POST"])
-def send():
-    content = request.form["content"]
-    token = request.form["csrf_token"]
-
-    if not check_token(token):
-        abort(403)
-    elif len(content) > 5000:
-        return render_template("error.html", message="Viesti on liian pitkä")
-    elif communicationManager.send(title) and messages.send(content):
-        return redirect("/")
-    else:
-        return render_template("error.html", message="Viestin lähettäminen ei onnistunut")
+'''
 
 def check_token(token):
     if session["csrf_token"] != token:
