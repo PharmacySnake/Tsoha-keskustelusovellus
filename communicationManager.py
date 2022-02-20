@@ -19,8 +19,7 @@ def send(content, topic_id):
 def get_topics():
     sql = "SELECT title, user_id, creation_time FROM topics WHERE visible = True ORDER BY creation_time"
     result = db.session.execute(sql)
-    topics = result.fetchall()
-    return topics
+    return result.fetchall()
 
 def create_new_topic(title, content):
     if users.user_id() == 0:

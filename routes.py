@@ -6,7 +6,8 @@ import communicationManager
 
 @app.route("/")
 def index():
-    list = communicationManager.get_list()
+    #list = communicationManager.get_list()
+    list = communicationManager.get_topics()
     return render_template("index.html", count=len(list), messages=list)
 
 @app.route("/send", methods=["POST"])
