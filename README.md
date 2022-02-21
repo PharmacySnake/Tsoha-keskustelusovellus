@@ -9,3 +9,6 @@ Sovellus toimii herokussa, osoitteessa: https://glacial-taiga-17141.herokuapp.co
 Viikko 3
 Tarkoitukseni oli lisätä mahdollisuuden käyttäjille lisätä uusia keskustelukanavia, joissa käyttäjä sekä muut käyttäjät voivat keskustella. Tämä ei toteutunut ja tällä hetkellä koko työ ei ole enää toimintakunnossa herokussa. 
 Käyttäjätiliä rekisteröitäessä ei voi enää luoda tiliä, jonka käyttäjänimi tai salasana on tyhjä vaan molempiin on asetettu minimivaatimus. Lisäksi käyttäjänimen ja salasanan pituus on rajoitettu.
+
+Myöhäinen lisäys: Sovellukseen on tehty paljon hyviä korjauksia ja heroku-toiminnallisuus on saatu takaisin.
+
