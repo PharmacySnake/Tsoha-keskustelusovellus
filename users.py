@@ -23,9 +23,10 @@ def user_id():
     return session.get("user_id", 0)
 
 def is_admin():
-    if user_id():
-        sql = "SELECT is_admin FROM users WHERE user_id=:user_id()"
-        result = db.session.execute(sql, {"user_id":user_id})
+    id = user_id()
+    if user_id:
+        sql = "SELECT is_admin FROM users WHERE user_id=:id"
+        result = db.session.execute(sql, {"user_id":id})
         return result.fetchone()
     return False
 
@@ -34,11 +35,15 @@ def logout():
 
 def register(username, password):
     hash_value = generate_password_hash(password)
-    stature = 0
+    stature = "FALSE"
+    print("u: "+username + ", p: "+password)
     try:
-        sql = "INSERT INTO users (username, password, is_admin) VALUES (:username, :password, :stature)"
-        db.session.execute(sql, {"username":username, "password":hash_value, "is_admin":stature})
+        sql = "INSERT INTO users (username, password) VALUES (:username, :password, :is_admin)"
+        db.session.execute(sql, {"username":username, "password":hash_value})
         db.session.commit()
+        sql = "SELECT * FROM users"
+        result = db.session.execute(sql)
+        print(result.fetchall)
     except:
         return False
     return login(username, password)

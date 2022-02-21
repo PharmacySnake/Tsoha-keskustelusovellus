@@ -65,10 +65,12 @@ def register():
             return render_template("error.html", message="Salasana on liian pitkä")
         elif password1 != password2:
             return render_template("error.html", message="Salasanat eroavat")
-
+        print("tässä")
         if users.register(username, password1):
+            print("tänne")
             return redirect("/")
         else:
+            print("täällä")
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
 '''
 @add.route("/topic/<int:id>")
