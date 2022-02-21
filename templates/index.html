@@ -1,34 +1,18 @@
 {% if session.user_id %}
-<p>Olet kirjautunut nimellä {{ session.username }}</p>
+<p style="font-size: 15px; padding-left: 20px">Olet kirjautunut nimellä {{ session.username }}</p>
 <hr>
 {% endif %}
 
+<b style="font-size: 20px; padding-left: 30px">topiikit</b><br>
 {% for topic in topics %}
-<i>title:</i> {{ topic[0] }} <i>></i>
-<p><i>Lähettäjä:</i> {{ topic[1] }}</p>
-<p><i>Aika:</i> {{ topic[2].strftime("%Y-%m-%d %H:%M:%S") }}</p>
-<hr>
+<a style="font-size: 20px; padding-left: 30px" href="/topic/{{ topic.id }}">{{ topic.title }}</a><br>
 {% endfor %}
-<!--
+<br>
 {% if session.user_id %}
-<a href="/create_new_topic">Luo uusi keskustelu</a>
-<form action="/send" method="POST">
-    <textarea name="content" rows="3" cols="40"></textarea><br>
-    <input type="submit" value="Lähetä viesti"><br>
-    <input type="hidden" name="csrf_token" value="{{ session csrf_token }}">
-</form>
-<script>
-    function check(form) {
-        if (form.message.value.length > 5000) {
-            alert("Viesti on liian pitkä");
-            return false;
-        }
-        return true;
-    }
-</script>
--->
+<a href="/newtopic">Luo uusi keskustelu</a><br>
 <a href="/logout">Kirjaudu ulos</a>
 
 {% else %}
-<a href="/login">Kirjaudu sisään</a>
+<a href="/login">Kirjaudu sisään</a><br>
+<a href="/register">Luo uusi käyttäjätunnus</a>
 {% endif %}

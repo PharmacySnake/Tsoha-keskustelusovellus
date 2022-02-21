@@ -1,6 +1,19 @@
+<h2>{{ topic.title }}</h2><br>
+
 {% for message in messages %}
-<i>Viesti:</i> {{ message[0] }}
-<p><i>Lähettäjä:</i> {{ message[1] }}</p>
-<p><i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}</p>
-<hr>
+<a style="font-size: 20px; padding-left: 40px"><b>{{ message.username }}</b></a><br>
+<a style="font-size: 20px; padding-left: 25px">{{ message.content }}</a><br>
+<i style="font-size: 12px; padding-left: 25px">{{ message.sent_at.strftime("%Y-%m-%d %H:%M") }}</i><br>
+<br>
 {% endfor %}
+{% if session.user_id %}
+
+<form action="/send" method="POST">
+ <textarea name="content" rows="3" cols="40"></textarea><br>
+ <input type="submit" value="Lähetä viesti"><br>
+ <input type="hidden" name="topicid" value="{{ topic.id }}">
+ <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+{% endif %}
+
+<a href="/">Palaa etusivulle</a>

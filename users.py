@@ -22,6 +22,9 @@ def login(username, password):
 def user_id():
     return session.get("user_id", 0)
 
+def check_token(token):
+    return session["csrf_token"] == token
+'''
 def is_admin():
     id = user_id()
     if user_id:
@@ -29,21 +32,20 @@ def is_admin():
         result = db.session.execute(sql, {"user_id":id})
         return result.fetchone()
     return False
+'''
 
 def logout():
+    del session["username"]
     session.clear()
 
 def register(username, password):
     hash_value = generate_password_hash(password)
-    stature = "FALSE"
     print("u: "+username + ", p: "+password)
+
     try:
-        sql = "INSERT INTO users (username, password) VALUES (:username, :password, :is_admin)"
-        db.session.execute(sql, {"username":username, "password":hash_value})
+        sql = "INSERT INTO users (username, password, is_admin) VALUES (:username, :password, :is_admin)"
+        db.session.execute(sql, {"username":username, "password":hash_value, "is_admin":"peasant"})
         db.session.commit()
-        sql = "SELECT * FROM users"
-        result = db.session.execute(sql)
-        print(result.fetchall)
     except:
         return False
     return login(username, password)

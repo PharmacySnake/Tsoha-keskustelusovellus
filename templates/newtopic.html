@@ -1,22 +1,16 @@
 <h3>Luo uusi keskustelu</h3>
-{% for message in messages %}
-<i>Viesti:</i> {{ message[0] }}
-<p><i>Lähettäjä:</i> {{ message[1] }}</p>
-<p><i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}</p>
-<hr>
-{% endfor %}
-
 {% if session.user_id %}
-<form action="/create_new_topic" method="POST">
+<form action="/newtopic" method="POST">
     <textarea name="title" rows="1" cols="40"></textarea><br>
-    <textarea name="content" rows="4" cols="40"></textarea>
+    <textarea name="content" rows="4" cols="40"></textarea><br>
     <input type="submit" value="Luo"><br>
-    <input type="hidden" name="csrf_token" value="{{ session csrf_token }}">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 
 <a href="/">Palaa etusivulle</a>
 
 {% else %}
+<p>Et voi luoda uutta keskustelua sisään kirjautumatta</p>
 <a href="/">Palaa etusivulle</a>
 <a href="/login">Kirjaudu sisään</a>
 {% endif %}
