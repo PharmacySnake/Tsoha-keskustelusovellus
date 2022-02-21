@@ -40,7 +40,6 @@ def logout():
 
 def register(username, password):
     hash_value = generate_password_hash(password)
-    print("u: "+username + ", p: "+password)
 
     try:
         sql = "INSERT INTO users (username, password, is_admin) VALUES (:username, :password, :is_admin)"

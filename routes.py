@@ -6,9 +6,11 @@ import communicationManager
 
 @app.route("/")
 def index():
-    list = communicationManager.get_topics()
-    return render_template("index.html", count=len(list), topics=list)
-
+    try:
+        list = communicationManager.get_topics()
+        return render_template("index.html", count=len(list), topics=list)
+    except:
+        return render_template("index.html")
 
 @app.route("/send", methods=["POST"])
 def send():
