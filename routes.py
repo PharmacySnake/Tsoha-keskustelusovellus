@@ -8,7 +8,7 @@ import communicationManager
 def index():
     try:
         list = communicationManager.get_topics()
-        return render_template("index.html", count=len(list), topics=list)
+        return render_template("index.html", topics=list)
     except:
         return render_template("index.html")
 
@@ -102,5 +102,5 @@ def newtopic():
 def topic(id):
     topic_nfo = communicationManager.topic(id)
     messages_list = communicationManager.get_messages_in_topic(id)
-    return render_template("topic.html", topic=topic_nfo, count=len(messages_list), messages=messages_list)
+    return render_template("topic.html", topic=topic_nfo, messages=messages_list)
 

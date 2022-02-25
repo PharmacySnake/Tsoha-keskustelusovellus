@@ -1,7 +1,9 @@
 <h3>Luo uusi keskustelu</h3>
 {% if session.user_id %}
 <form action="/newtopic" method="POST">
+    <p>Keskustelun otsikko</p>
     <textarea name="title" rows="1" cols="40"></textarea><br>
+    <p>Viesti:</p>
     <textarea name="content" rows="4" cols="40"></textarea><br>
     <input type="submit" value="Luo"><br>
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
